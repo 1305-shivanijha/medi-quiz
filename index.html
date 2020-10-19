@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<title>Page Title</title>
+<style>
+
+.hidden {
+    display: none;
+    }
+.inline {
+    display: inline;
+    }
+.title{
+    text-align: center;  }
+#next-btn{
+    margin-bottom: 25px;
+
+
+width:100%;}
+
+.selected {
+    border-top: $border;
+    border-bottom: $border;
+    background: black;
+    color: white;  }
+#question-num, .inline-time{
+    display: inline-block; 
+    float:center;
+    text-align: center;}
+.inline-time{
+    float: right;
+    margin-right: 20px;
+    padding-top: 5px;  }
+#game 
+    background-color:;
+    color: #ffffff;
+    padding: 5px 20px 0px 20px;  }
+.game-top{
+    background-color:;
+
+      width: 100%;  }
+    
+.answer{
+    max-width: 100%;
+    padding-top:20px;
+    margin-top:20px;
+    margin-bottom:30px;
+    padding-left: 10px;
+    background-color:#e2e2e2;
+    margin-left:20px;
+    margin-right:20px;
+    border:1px solid #7b7c7d;
+    }
+#question{
+font-weight:700px;
+  font-size:27px;
+    padding: 30px;
+    background:#41c2d4;
+    height:100%;
+width:100%;
+color:white;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-left:px;
+    padding-right:150px;}
+    
+    #choices{
+     margin-bottom: 10px;
+    margin-top: 80px;
+    }
+#results{
+    text-align: center;
+    background-color:#3167B1;
+    height:100%;
+    color:white;
+    padding-top:200px;
+    padding-bottom:200px;
+    padding-left:40px;
+    padding-right:40px;
+  }
+  .vertical { 
+            border-left: 1px solid white; 
+            height: 100px; 
+            position:absolute; 
+            padding:0px;
+            margin-right:0px;
+            margin-bottom:20px;
+            margin-right:20px;
+        }
+        
+        @media only screen and (max-width: 800px) {
+  .container4{
+width:80%;  
+margin-left:10%;
+}
+}
+</style>
+</head>
+<body>
+<div class="container4" style="    background-color:white;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+margin-top:50px; width:40%;padding-top:0px;margin-left:30%;
+">
+  
+  <div id="welcome">
+    
+       
+    <p class="timer hidden">
+      Get Ready:
+      <span class="first-timer">3</span>
+      <div id="intro" class="row center-block">
+        <div class="col-sm-6 ">
+        <img src="        https://www.mymedisage.com/storage/images/medisage-logo.png
+" alt="logo" width="130px" style="padding-left:10px;">
+
+          <p style="padding:10px;">WELCOME TO MEDISAGE! <br /> Click the button to begin.</p>
+        </div>
+        <div class="col col-sm-6">
+          <button class="btn btn-success btn-block" onclick="initCounter()" id="start-btn" style="padding:10px;background-color:blue;margin-top:10px;">Start</button>
+        </div>
+      </div>
+    </p>
+  </div>
+  <div class="hidden" id="game">
+    <div class="game-top">
+
+      <div class="inline-time">
+      
+        <p style="color:white;padding-top:20px;f">        
+        <div class = "vertical"></div> 
+<i class="fa fa-clock-o" style="font-size:22px;color:white;padding-left:30px;">
+Timer:
+          <span class="game-timer">15</span>
+          </i>
+        </p>
+        
+      </div>
+     </div>
+
+    <div id="question"> </div>
+
+               <div id="question-num" style="float:center;padding-left:40%;margin-top:30px;"></div>
+
+    <div id="choices">
+  
+  
+  
+      <div id="A" type="radio" class="answer" value="A"></div>
+      <div id="B" class="answer" value="B"></div>
+      <div id="C" class="answer" value="C"></div>
+      <div id="D" class="answer" value="D"></div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary btn-block7" id="next-btn" style="width:95%; background-color:#7b7c7d;margin-left:20px;margin-right:20px;">Next <i class="fa fa-arrow-right" style="font-size:18px;color:white;float:right;"></i>
+</button>
+      </div>
+      <div class="col-sm-6">
+        <!--         <button class="btn btn-warning btn-block pull-right" id="restart-btn" onclick="restartGame()">Restart</button> -->
+      </div>
+    </div>
+
+  </div>
+  <div class="hidden" id="result-section">
+    <div id="results">
+    <i class="fas fa-lightbulb" style="font-size:108px;color:white;"></i>
+
+
+    <h1 style="padding:10px;">your quiz is complete </h1>
+      <div id="number-wrong" style="padding:10px;"></div>
+      <div id="number-correct" style="padding:10px;"></div>
+      <h4 style="padding:10px;">Total Score: <span id="score" />
+        </h4>
+        <h2 style="padding:10px;">we will email you question and answer </h2>
+    </div>
+    <br>
+   
+  </div>
+</div>
+<script>
+var trivia = [
+  {
+    question:
+      "Which of the following is a large blood vessel that carries blood away from the heart?",
+    answerSet: {
+      A: "Vein",
+      B: "Artery",
+      C: "Capillary",
+      D: "none"
+    },
+    correctAnswer: "B"
+  },
+  {
+    question: "Which of the following is not a member of the vitamin B complex?",
+    answerSet: {
+      A: "Thiamine",
+      B: "Riboflavin",
+      C: "Ascorbic acid",
+      D: "none"
+    },
+    correctAnswer: "C"
+  },
+  {
+       question:
+      "Which of the following is a large blood vessel that carries blood away from the heart?",
+    answerSet: {
+      A: "Vein",
+      B: "Artery",
+      C: "Capillary",
+      D: "none"
+    },
+    correctAnswer: "B"
+  },
+  {
+     question: "Which of the following is not a member of the vitamin B complex?",
+    answerSet: {
+      A: "Thiamine",
+      B: "Riboflavin",
+      C: "Ascorbic acid",
+      D: "none"
+    },
+    correctAnswer: "C"
+  },
+  {
+       question:
+      "Which of the following is a large blood vessel that carries blood away from the heart?",
+    answerSet: {
+      A: "Vein",
+      B: "Artery",
+      C: "Capillary",
+      D: "none"
+    },
+    correctAnswer: "B"
+  },
+  {
+  question: "Which of the following is not a member of the vitamin B complex?",
+    answerSet: {
+      A: "Thiamine",
+      B: "Riboflavin",
+      C: "Ascorbic acid",
+      D: "none"
+    },
+    correctAnswer: "C"
+  },
+  {
+      question:
+      "Which of the following is a large blood vessel that carries blood away from the heart?",
+    answerSet: {
+      A: "Vein",
+      B: "Artery",
+      C: "Capillary",
+      D: "none"
+    },
+    correctAnswer: "B"
+  },
+  {
+   question: "Which of the following is not a member of the vitamin B complex?",
+    answerSet: {
+      A: "Thiamine",
+      B: "Riboflavin",
+      C: "Ascorbic acid",
+      D: "none"
+    },
+    correctAnswer: "C"
+  },
+  {
+       question:
+      "Which of the following is a large blood vessel that carries blood away from the heart?",
+    answerSet: {
+      A: "Vein",
+      B: "Artery",
+      C: "Capillary",
+      D: "none"
+    },
+    correctAnswer: "B"
+  },
+  {
+    question: "Which of the following is not a member of the vitamin B complex?",
+    answerSet: {
+      A: "Thiamine",
+      B: "Riboflavin",
+      C: "Ascorbic acid",
+      D: "none"
+    },
+    correctAnswer: "C"
+  }
+];
+// Starting Countdown Functions
+var startTime = 3;
+function initCounter() {
+  $("#intro").hide();
+  $(".timer").removeClass("hidden");
+  setInterval(initialCountdown, 1000);
+}
+function initialCountdown() {
+  startTime--;
+  if (startTime === 0) {
+    clearInterval(initCounter);
+    initGame();
+    return;
+  }
+  $(".first-timer").text(startTime);
+}
+
+// Answer toggle
+$(".answer").click(function() {
+$(".answer").removeClass("selected");
+  $(this).addClass("selected");
+});
+
+// Game Runtime
+function initGame() {
+  $("#welcome").hide();
+  $("#replaceStr").removeClass("hidden");
+  $("#removeStr").hide();
+  var gameTime = 15; //21 for production
+  var currentQuestion = 0;
+  var numIncorrect = 0;
+  var numCorrect = 0;
+  var gameTimer = setInterval(runTrivia, 1000);
+  var restarted = false;
+  $("#next-btn").click(function() {
+    gameTime = 1;
+    return gameTime;
+  });
+  
+  function runTrivia() {
+    var triviaStr = trivia[currentQuestion];
+    var answers = triviaStr.answerSet;
+    var correctAnswer = triviaStr.correctAnswer;
+    var questionArea = $("#question");
+    var answerChoices = $("#choices");
+    gameTime--;
+
+    // Updates the DOM for each question
+    $(".game-timer").text(parseInt(gameTime));
+    $("#question-num").html(
+      "<h4> Question:" + (currentQuestion + 1) + "/10</h4>"
+    );
+    questionArea.text(triviaStr.question);
+    $.each(answers, function(i, val) {
+      $("#" + i).text(i + " : " + val);
+    });
+    $("#" + correctAnswer).addClass("correct");
+    $("#game").show("slow");
+
+    function showResults() {
+      var score = numCorrect * 10;
+      $("#number-correct").html(
+        "<h3>You got " + numCorrect + " correct.</h3>"
+      );
+      $("#number-wrong").html(
+        "<h3>You got " + numIncorrect + " wrong.</h3>"
+      );
+      $("#score").text(score + "%");
+      $("#result-section").show("slow");
+    }
+    
+    
+    var selected = $(".selected");
+    if (gameTime === 0 && currentQuestion === 9) {
+      $("#game").hide();
+      if (selected.hasClass("correct")) {
+        numCorrect++;
+      } else {
+        numIncorrect++;
+      }
+      showResults();
+      clearInterval(gameTimer);
+    } else if (gameTime === 0 && currentQuestion !== 9) {
+      gameTime += 15; //21 for finished
+      $("#game").hide("slow");
+      $(".answer").removeClass("selected");
+      if (selected.hasClass("correct")) {
+        numCorrect++;
+        currentQuestion++;
+      } else {
+        numIncorrect++;
+        currentQuestion++;
+      }
+      $("#" + correctAnswer).removeClass("correct");
+    }
+  }
+}
+function restartGame() {
+      $("#game").hide();
+      clearInterval();
+      $("#welcome").show("slow");
+     return (startTime = 5);
+    }
+function nextQuestion() {
+  return (gameTime = 0);
+}
+// add a button that fires this function in the results div
+
+</script>
+</body>
+</html>
