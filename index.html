@@ -32,6 +32,11 @@ width:100%;}
 
 
 }
+.answer:selected{
+  background: #41c2d4;
+
+
+}
 .selected {
     border-top: 2px solid black;
     border-bottom: $border;
@@ -228,87 +233,36 @@ var trivia = [
   },
   {
        question:
-      "Which of the following is a large blood vessel that carries blood away from the heart?",
+      "Which blood vessels have the smallest diameter?",
     answerSet: {
-      A: "Vein",
-      B: "Artery",
-      C: "Capillary",
-      D: "none"
+      A: "Lymphatic",
+      B: "Venules",
+      C: "Arterioles",
+      D: "Capillaries"
     },
-    correctAnswer: "B"
+    correctAnswer: "D"
   },
   {
-     question: "Which of the following is not a member of the vitamin B complex?",
+     question: "Which among the following human organs does not have any blood supply?",
     answerSet: {
-      A: "Thiamine",
-      B: "Riboflavin",
-      C: "Ascorbic acid",
-      D: "none"
+      A: "Eyes",
+      B: "Nose",
+      C: "Ear",
+      D: "Lips"
     },
-    correctAnswer: "C"
+    correctAnswer: "A"
   },
+
+
   {
-       question:
-      "Which of the following is a large blood vessel that carries blood away from the heart?",
+    question: "Which among the following vitamins correctly defines ascorbic acid?",
     answerSet: {
-      A: "Vein",
-      B: "Artery",
-      C: "Capillary",
-      D: "none"
+      A: "Vitamin K",
+      B: "Vitamin B ",
+      C: "Vitamin A", 
+      D: "Vitamin  C"
     },
-    correctAnswer: "B"
-  },
-  {
-  question: "Which of the following is not a member of the vitamin B complex?",
-    answerSet: {
-      A: "Thiamine",
-      B: "Riboflavin",
-      C: "Ascorbic acid",
-      D: "none"
-    },
-    correctAnswer: "C"
-  },
-  {
-      question:
-      "Which of the following is a large blood vessel that carries blood away from the heart?",
-    answerSet: {
-      A: "Vein",
-      B: "Artery",
-      C: "Capillary",
-      D: "none"
-    },
-    correctAnswer: "B"
-  },
-  {
-   question: "Which of the following is not a member of the vitamin B complex?",
-    answerSet: {
-      A: "Thiamine",
-      B: "Riboflavin",
-      C: "Ascorbic acid",
-      D: "none"
-    },
-    correctAnswer: "C"
-  },
-  {
-       question:
-      "Which of the following is a large blood vessel that carries blood away from the heart?",
-    answerSet: {
-      A: "Vein",
-      B: "Artery",
-      C: "Capillary",
-      D: "none"
-    },
-    correctAnswer: "B"
-  },
-  {
-    question: "Which of the following is not a member of the vitamin B complex?",
-    answerSet: {
-      A: "Thiamine",
-      B: "Riboflavin",
-      C: "Ascorbic acid",
-      D: "none"
-    },
-    correctAnswer: "C"
+    correctAnswer: "D"
   }
 ];
 // Starting Countdown Functions
@@ -361,7 +315,7 @@ function initGame() {
     // Updates the DOM for each question
     $(".game-timer").text(parseInt(gameTime));
     $("#question-num").html(
-      "<h4> Question:" + (currentQuestion + 1) + "/10</h4>"
+      "<h4> Question:" + (currentQuestion + 1) + "/5</h4>"
     );
     questionArea.text(triviaStr.question);
     $.each(answers, function(i, val) {
@@ -371,7 +325,7 @@ function initGame() {
     $("#game").show("slow");
 
     function showResults() {
-      var score = numCorrect * 10;
+      var score = numCorrect * 5;
       $("#number-correct").html(
         "<h3>You got " + numCorrect + " correct.</h3>"
       );
@@ -384,7 +338,7 @@ function initGame() {
     
     
     var selected = $(".selected");
-    if (gameTime === 0 && currentQuestion === 9) {
+    if (gameTime === 0 && currentQuestion === 4) {
       $("#game").hide();
       if (selected.hasClass("correct")) {
         numCorrect++;
@@ -393,7 +347,7 @@ function initGame() {
       }
       showResults();
       clearInterval(gameTimer);
-    } else if (gameTime === 0 && currentQuestion !== 9) {
+    } else if (gameTime === 0 && currentQuestion !== 4) {
       gameTime += 15; //21 for finished
       $("#game").hide("slow");
       $(".answer").removeClass("selected");
@@ -421,7 +375,6 @@ function nextQuestion() {
 </script>
 </body>
 </html>
-
 
 
 
